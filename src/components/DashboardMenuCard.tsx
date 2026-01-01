@@ -20,7 +20,7 @@ const DashboardMenuCard: React.FC<DashboardMenuCardProps> = ({ title, icon: Icon
       onClick={onClick}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-2xl font-bold text-pastel-text">
+        <CardTitle className="text-3xl font-extrabold text-pastel-text">
           {title}
         </CardTitle>
         <Icon className="h-8 w-8 text-pastel-text" />

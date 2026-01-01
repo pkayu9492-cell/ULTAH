@@ -57,13 +57,13 @@ const Dashboard = () => {
       {/* Menu Cards */}
       <div className="w-full max-w-4xl flex flex-col md:flex-row justify-center gap-6 mb-10">
         <DashboardMenuCard
-          title="Menu Galeri"
+          title="Galeri"
           icon={Image}
           onClick={() => setActiveView('gallery')}
           colorClass={activeView === 'gallery' ? 'bg-pastel-pink shadow-2xl' : 'bg-pastel-pink/50'}
         />
         <DashboardMenuCard
-          title="Menu Pesan"
+          title="Pesan"
           icon={MessageSquare}
           onClick={() => setActiveView('message')}
           colorClass={activeView === 'message' ? 'bg-pastel-yellow shadow-2xl' : 'bg-pastel-yellow/50'}

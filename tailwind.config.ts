@@ -68,6 +68,7 @@ export default {
           cream: "hsl(var(--pastel-cream))",
           yellow: "hsl(var(--pastel-yellow))",
           blue: "hsl(var(--pastel-blue))", // New soft blue color
+          purple: "hsl(var(--pastel-purple))", // New soft purple color
           text: "hsl(var(--pastel-text))", // Darker text color for contrast
         },
       },
@@ -102,12 +103,19 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        // NEW: Bounce in for text
+        'bounce-in': {
+          '0%': { opacity: '0', transform: 'translateY(10px) scale(0.8)' },
+          '60%': { opacity: '1', transform: 'translateY(-5px) scale(1.1)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 4s ease-in-out infinite",
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        'bounce-in': 'bounce-in 0.5s ease-out forwards',
       },
     },
   },

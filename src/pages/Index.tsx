@@ -44,11 +44,11 @@ const Index = () => {
           />
         </div>
 
-        {/* Tombol 'Tekan' Berdenyut */}
+        {/* Tombol 'Tekan' Berdenyut (Pill shape, Gradient, Smoother Pulse) */}
         <Button
           onClick={handleTransition}
-          className="w-48 h-16 text-xl font-extrabold rounded-xl shadow-2xl transition-all duration-300
-                     bg-pastel-pink text-pastel-text hover:bg-pastel-pink/80
+          className="w-48 h-16 text-xl font-extrabold rounded-full shadow-2xl transition-all duration-300
+                     bg-gradient-to-r from-pastel-pink to-pastel-purple text-pastel-text hover:from-pastel-pink/90 hover:to-pastel-purple/90
                      border-4 border-pastel-yellow
                      animate-pulse"
         >
