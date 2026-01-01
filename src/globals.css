@@ -52,8 +52,9 @@
 
     /* Custom Pastel Palette */
     --pastel-pink: 340 80% 90%; /* Soft Pink */
-    --pastel-cream: 40 100% 97%; /* Cream */
+    --pastel-cream: 40 100% 97%; /* Cream (kept for compatibility if needed elsewhere) */
     --pastel-yellow: 50 100% 85%; /* Baby Yellow */
+    --pastel-blue: 210 60% 90%; /* Soft Blue */
     --pastel-text: 222.2 47.4% 11.2%; /* Dark text for contrast */
   }
 
@@ -102,8 +103,8 @@
   }
 
   body {
-    /* Setting default background to cream and text to the custom dark text color */
-    @apply bg-pastel-cream text-pastel-text;
+    /* Setting default background to soft blue and text to the custom dark text color */
+    @apply bg-pastel-blue text-pastel-text;
     /* Attempting to use a rounded sans-serif font stack */
     font-family: ui-rounded, "Hiragino Maru Gothic ProN", Quicksand, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   }

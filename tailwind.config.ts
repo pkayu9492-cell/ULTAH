@@ -67,6 +67,7 @@ export default {
           pink: "hsl(var(--pastel-pink))",
           cream: "hsl(var(--pastel-cream))",
           yellow: "hsl(var(--pastel-yellow))",
+          blue: "hsl(var(--pastel-blue))", // New soft blue color
           text: "hsl(var(--pastel-text))", // Darker text color for contrast
         },
       },

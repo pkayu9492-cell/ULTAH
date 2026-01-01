@@ -29,7 +29,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center p-4 bg-pastel-cream transition-opacity duration-1000 relative">
+    <div className="min-h-screen flex flex-col items-center p-4 bg-pastel-blue transition-opacity duration-1000 relative">
       
       {/* Tombol Kembali */}
       <div className="absolute top-4 left-4 z-20">

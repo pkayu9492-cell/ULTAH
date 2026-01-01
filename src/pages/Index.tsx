@@ -16,7 +16,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-pastel-cream relative overflow-hidden p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-pastel-blue relative overflow-hidden p-4">
       {/* Dekorasi Latar Belakang Estetik (Bintang & Hati) */}
       <Star className="absolute top-10 left-10 w-8 h-8 text-pastel-yellow animate-pulse" />
       <Heart className="absolute bottom-5 right-1/4 w-6 h-6 text-pastel-pink animate-float delay-500" />
