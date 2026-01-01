@@ -62,6 +62,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom Pastel Colors
+        pastel: {
+          pink: "hsl(var(--pastel-pink))",
+          cream: "hsl(var(--pastel-cream))",
+          yellow: "hsl(var(--pastel-yellow))",
+          text: "hsl(var(--pastel-text))", // Darker text color for contrast
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -85,10 +92,21 @@ export default {
             height: "0",
           },
         },
+        // Custom keyframes for floating and pulsing
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        float: "float 4s ease-in-out infinite",
+        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },
