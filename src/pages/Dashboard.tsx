@@ -1,14 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DashboardMenuCard from "@/components/DashboardMenuCard";
 import GalleryView from "@/components/GalleryView";
 import MessageView from "@/components/MessageView";
-import { Image, MessageSquare } from "lucide-react";
+import { Image, MessageSquare, ArrowLeft } from "lucide-react";
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import { Button } from "@/components/ui/button";
 
 type ActiveView = 'gallery' | 'message';
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState<ActiveView>('gallery');
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate("/");
+  };
 
   const renderContent = () => {
     switch (activeView) {
@@ -22,7 +29,19 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center p-4 bg-pastel-cream transition-opacity duration-1000">
+    <div className="min-h-screen flex flex-col items-center p-4 bg-pastel-cream transition-opacity duration-1000 relative">
+      
+      {/* Tombol Kembali */}
+      <div className="absolute top-4 left-4 z-20">
+        <Button 
+          onClick={handleBack}
+          variant="outline"
+          className="rounded-full p-2 h-10 w-10 bg-pastel-pink/80 border-pastel-text text-pastel-text shadow-md hover:bg-pastel-pink"
+        >
+          <ArrowLeft className="h-5 w-5" />
+        </Button>
+      </div>
+
       <header className="w-full max-w-4xl py-8 text-center">
         <h1 className="text-5xl font-extrabold text-pastel-text mb-2">
           Our Special Place ✨

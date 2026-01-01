@@ -9,15 +9,15 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handleTransition = () => {
-    // Using a slight delay to simulate a smooth fade transition before navigating
+    // Memberikan sedikit penundaan untuk simulasi transisi yang halus sebelum navigasi
     setTimeout(() => {
-        navigate("/dashboard");
+      navigate("/dashboard");
     }, 300);
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-pastel-cream relative overflow-hidden p-4">
-      {/* Aesthetic Background Decorations (Stars & Hearts) */}
+      {/* Dekorasi Latar Belakang Estetik (Bintang & Hati) */}
       <Star className="absolute top-10 left-10 w-8 h-8 text-pastel-yellow animate-pulse" />
       <Heart className="absolute bottom-5 right-1/4 w-6 h-6 text-pastel-pink animate-float delay-500" />
       <Star className="absolute top-1/4 right-20 w-5 h-5 text-pastel-yellow/80 animate-float delay-1000" />
@@ -25,15 +25,20 @@ const Index = () => {
       <Star className="absolute top-1/2 left-5 w-4 h-4 text-pastel-yellow/60 animate-float delay-200" />
       <Heart className="absolute top-1/3 right-5 w-7 h-7 text-pastel-pink/70 animate-pulse delay-1500" />
 
-
       <div className="flex flex-col items-center space-y-12 z-10">
-        {/* Floating Photo Frames */}
+        {/* Bingkai Foto Mengambang dengan Foto Kamu */}
         <div className="flex space-x-8">
-          <FloatingPhotoFrame delay="delay-0" imageSrc="/placeholder.svg" />
-          <FloatingPhotoFrame delay="delay-500" imageSrc="/placeholder.svg" />
+          <FloatingPhotoFrame 
+            delay="delay-0" 
+            imageSrc="/Foto depan 1.jpg" 
+          />
+          <FloatingPhotoFrame 
+            delay="delay-500" 
+            imageSrc="/Foto depan 2.jpg" 
+          />
         </div>
 
-        {/* Pulsing 'Tekan' Button */}
+        {/* Tombol 'Tekan' Berdenyut */}
         <Button
           onClick={handleTransition}
           className="w-48 h-16 text-xl font-extrabold rounded-xl shadow-2xl transition-all duration-300
