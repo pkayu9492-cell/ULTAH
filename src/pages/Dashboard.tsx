@@ -46,7 +46,12 @@ const Dashboard = () => {
         <h1 className="text-5xl font-extrabold text-pastel-text mb-2">
           Our Special Place ✨
         </h1>
-        <p className="text-lg text-pastel-text/80">Happy New Year, My Love!</p>
+        <p className="text-lg text-pastel-text/80 mb-4">Happy New Year, My Love!</p>
+        
+        {/* Teks Romantis Baru */}
+        <h2 className="text-4xl font-bold text-pastel-pink tracking-wider italic mb-8 p-2 bg-pastel-yellow/50 rounded-xl shadow-inner">
+          SELAMAT TAHUN BARU SAYANG
+        </h2>
       </header>
 
       {/* Menu Cards */}
