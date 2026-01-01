@@ -26,6 +26,12 @@ const Index = () => {
       <Heart className="absolute top-1/3 right-5 w-7 h-7 text-pastel-pink/70 animate-pulse delay-1500" />
 
       <div className="flex flex-col items-center space-y-12 z-10">
+        
+        {/* Teks Selamat Tahun Baru */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-pastel-text text-center tracking-wider mb-4 p-4 bg-pastel-yellow/70 rounded-2xl shadow-xl border-4 border-pastel-pink">
+          SELAMAT TAHUN BARU SAYANG
+        </h1>
+
         {/* Bingkai Foto Mengambang dengan Foto Kamu */}
         <div className="flex space-x-8">
           <FloatingPhotoFrame 
