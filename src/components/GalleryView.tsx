@@ -56,9 +56,8 @@ const GalleryView: React.FC = () => {
       {/* Lightbox Component */}
       {selectedImage && (
         <Lightbox
-          isOpen={!!selectedImage}
+          src={selectedImage}
           onClose={handleCloseLightbox}
-          imageSrc={selectedImage}
         />
       )}
     </>
