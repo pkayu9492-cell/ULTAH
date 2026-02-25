@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Send, Star, Info, CheckCircle2 } from 'lucide-react';
+import { Send, Star, Info, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
-import { showError } from '@/utils/toast';
 
 const BirthdayWishes = () => {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const BirthdayWishes = () => {
     const formData = new FormData(e.currentTarget);
     
     try {
-      const response = await fetch("https://formspree.io/f/pkayu9492@gmail.com", {
+      const response = await fetch("https://formspree.io/f/maqdakew", {
         method: "POST",
         body: formData,
         headers: {
@@ -27,27 +27,28 @@ const BirthdayWishes = () => {
       
       if (response.ok) {
         setStatus('success');
+        setMessage(''); // Clear textarea on success
       } else {
-        throw new Error();
+        throw new Error('Failed to send');
       }
     } catch (error) {
-      setStatus('idle');
-      showError("Gagal mengirim pesan. Silakan coba lagi.");
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000); // Reset to idle after 3 seconds
     }
   };
 
   if (status === 'success') {
     return (
-      <div className="max-w-md mx-auto text-center space-y-6 p-8 bg-white/5 rounded-3xl border border-primary/30 animate-in zoom-in duration-500">
+      <div className="max-w-md mx-auto text-center space-y-6 p-8 bg-white/5 rounded-3xl border border-green-500/30 animate-in zoom-in duration-500">
         <div className="mx-auto bg-green-500/20 w-20 h-20 rounded-full flex items-center justify-center">
           <CheckCircle2 className="text-green-500 w-12 h-12" />
         </div>
-        <h2 className="text-2xl font-bold text-white">Terima kasih, Ladya!</h2>
+        <h2 className="text-2xl font-bold text-white">Berhasil!</h2>
         <p className="text-primary/80">Harapanmu sudah terkirim ke Alfan. ❤️</p>
         <Button 
           onClick={() => setStatus('idle')}
           variant="outline"
-          className="rounded-xl border-primary/30 text-primary"
+          className="rounded-xl border-primary/30 text-primary hover:bg-primary/10"
         >
           Tulis Harapan Lain
         </Button>
@@ -77,7 +78,7 @@ const BirthdayWishes = () => {
             name="name" 
             defaultValue="LADYA" 
             readOnly 
-            className="bg-black/20 border-primary/20 rounded-xl text-white"
+            className="bg-black/20 border-primary/20 rounded-xl text-white focus:ring-primary"
           />
         </div>
         
@@ -85,26 +86,44 @@ const BirthdayWishes = () => {
           <label className="text-sm font-medium text-primary/80 ml-1">Harapanmu</label>
           <Textarea 
             name="message" 
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Tulis harapanmu di sini..." 
             className="min-h-[150px] bg-black/20 border-primary/20 rounded-xl focus:border-primary transition-colors text-white"
             required
           />
         </div>
 
+        {status === 'error' && (
+          <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+            <AlertCircle className="w-4 h-4" />
+            Gagal mengirim pesan. Silakan coba lagi.
+          </div>
+        )}
+
         <div className="flex gap-3 p-3 bg-primary/10 rounded-xl border border-primary/20">
           <Info className="w-5 h-5 text-primary shrink-0 mt-0.5" />
           <p className="text-xs text-primary/90 leading-relaxed">
-            Setelah klik kirim, silakan cek email <strong>pkayu9492@gmail.com</strong> untuk aktivasi pertama kali agar pesan bisa masuk.
+            Pesan akan langsung terkirim ke email Alfan tanpa berpindah halaman.
           </p>
         </div>
 
         <Button 
           type="submit" 
           disabled={status === 'submitting'}
-          className="w-full h-12 rounded-xl bg-primary hover:bg-primary/80 text-white font-bold text-lg shadow-lg shadow-primary/20 group"
+          className="w-full h-12 rounded-xl bg-primary hover:bg-primary/80 text-white font-bold text-lg shadow-lg shadow-primary/20 group transition-all"
         >
-          {status === 'submitting' ? 'Mengirim...' : 'Kirim ke Alfan'}
-          <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          {status === 'submitting' ? (
+            <span className="flex items-center gap-2">
+              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              Mengirim...
+            </span>
+          ) : (
+            <span className="flex items-center justify-center gap-2">
+              Kirim ke Alfan
+              <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </span>
+          )}
         </Button>
       </form>
     </div>
