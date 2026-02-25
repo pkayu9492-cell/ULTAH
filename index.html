@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dyad-generated-app</title>
+    <script>
+      (function() {
+        var user = prompt("Masukkan Username:");
+        var pass = prompt("Masukkan Password:");
+        if (user === "LADYA" && pass === "260205") {
+          // Akses diizinkan, lanjut memuat halaman
+        } else {
+          alert("Akses Ditolak");
+          window.location.reload();
+        }
+      })();
+    </script>
   </head>
 
   <body>
