@@ -1,16 +1,59 @@
 "use client";
 
-import React from 'react';
-import { Send, Star, Info } from 'lucide-react';
+import React, { useState } from 'react';
+import { Send, Star, Info, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
-import { showSuccess } from '@/utils/toast';
+import { showError } from '@/utils/toast';
 
 const BirthdayWishes = () => {
-  const handleSubmit = () => {
-    showSuccess("Harapanmu sedang dikirim! ❤️");
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+    
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/pkayu9492@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      setStatus('idle');
+      showError("Gagal mengirim pesan. Silakan coba lagi.");
+    }
   };
+
+  if (status === 'success') {
+    return (
+      <div className="max-w-md mx-auto text-center space-y-6 p-8 bg-white/5 rounded-3xl border border-primary/30 animate-in zoom-in duration-500">
+        <div className="mx-auto bg-green-500/20 w-20 h-20 rounded-full flex items-center justify-center">
+          <CheckCircle2 className="text-green-500 w-12 h-12" />
+        </div>
+        <h2 className="text-2xl font-bold text-white">Terima kasih, Ladya!</h2>
+        <p className="text-primary/80">Harapanmu sudah terkirim ke Alfan. ❤️</p>
+        <Button 
+          onClick={() => setStatus('idle')}
+          variant="outline"
+          className="rounded-xl border-primary/30 text-primary"
+        >
+          Tulis Harapan Lain
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-md mx-auto space-y-8 animate-in fade-in duration-700">
@@ -25,8 +68,6 @@ const BirthdayWishes = () => {
       </div>
 
       <form 
-        action="https://formspree.io/f/pkayu9492@gmail.com" 
-        method="POST"
         onSubmit={handleSubmit}
         className="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10 shadow-xl"
       >
@@ -59,9 +100,10 @@ const BirthdayWishes = () => {
 
         <Button 
           type="submit" 
+          disabled={status === 'submitting'}
           className="w-full h-12 rounded-xl bg-primary hover:bg-primary/80 text-white font-bold text-lg shadow-lg shadow-primary/20 group"
         >
-          Kirim ke Alfan
+          {status === 'submitting' ? 'Mengirim...' : 'Kirim ke Alfan'}
           <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </Button>
       </form>
