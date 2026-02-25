@@ -5,7 +5,6 @@ import { Heart, Lock, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { showError } from '@/utils/toast';
 
 interface LoginOverlayProps {
   onLoginSuccess: () => void;
@@ -14,19 +13,22 @@ interface LoginOverlayProps {
 const LoginOverlay: React.FC<LoginOverlayProps> = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (username === 'LADYA' && password === '260205') {
       onLoginSuccess();
     } else {
-      showError('Akses Ditolak! Username atau Password salah.');
+      setError(true);
+      // Reset error message after 2 seconds
+      setTimeout(() => setError(false), 2000);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0a0a0c]/95 backdrop-blur-md p-4">
-      <Card className="w-full max-w-md border-2 border-primary/30 shadow-2xl bg-black/40 backdrop-blur-xl animate-in zoom-in duration-500">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0a0a0c] p-4">
+      <Card className="w-full max-w-md border-2 border-primary/30 shadow-[0_0_50px_rgba(180,100,120,0.2)] bg-black/60 backdrop-blur-xl animate-in zoom-in duration-500">
         <CardHeader className="text-center space-y-2">
           <div className="mx-auto bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mb-2 border border-primary/30">
             <Heart className="text-primary fill-primary w-10 h-10 animate-pulse" />
@@ -58,6 +60,13 @@ const LoginOverlay: React.FC<LoginOverlayProps> = ({ onLoginSuccess }) => {
                 required
               />
             </div>
+            
+            {error && (
+              <p className="text-red-400 text-center text-sm font-bold animate-bounce">
+                Coba Lagi
+              </p>
+            )}
+
             <Button
               type="submit"
               className="w-full h-12 text-lg font-bold rounded-xl bg-primary hover:bg-primary/80 text-white transition-all shadow-lg shadow-primary/20"

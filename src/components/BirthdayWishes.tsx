@@ -1,17 +1,15 @@
 "use client";
 
 import React from 'react';
-import { Send, Star } from 'lucide-react';
+import { Send, Star, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { showSuccess } from '@/utils/toast';
 
 const BirthdayWishes = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    // Formspree will handle the actual submission via the action attribute
-    // We just show a toast for better UX
-    showSuccess("Harapanmu telah terkirim ke Alfan! ❤️");
+  const handleSubmit = () => {
+    showSuccess("Harapanmu sedang dikirim! ❤️");
   };
 
   return (
@@ -30,7 +28,7 @@ const BirthdayWishes = () => {
         action="https://formspree.io/f/pkayu9492@gmail.com" 
         method="POST"
         onSubmit={handleSubmit}
-        className="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10"
+        className="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10 shadow-xl"
       >
         <div className="space-y-2">
           <label className="text-sm font-medium text-primary/80 ml-1">Nama Kamu</label>
@@ -38,7 +36,7 @@ const BirthdayWishes = () => {
             name="name" 
             defaultValue="LADYA" 
             readOnly 
-            className="bg-black/20 border-primary/20 rounded-xl"
+            className="bg-black/20 border-primary/20 rounded-xl text-white"
           />
         </div>
         
@@ -47,9 +45,16 @@ const BirthdayWishes = () => {
           <Textarea 
             name="message" 
             placeholder="Tulis harapanmu di sini..." 
-            className="min-h-[150px] bg-black/20 border-primary/20 rounded-xl focus:border-primary transition-colors"
+            className="min-h-[150px] bg-black/20 border-primary/20 rounded-xl focus:border-primary transition-colors text-white"
             required
           />
+        </div>
+
+        <div className="flex gap-3 p-3 bg-primary/10 rounded-xl border border-primary/20">
+          <Info className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+          <p className="text-xs text-primary/90 leading-relaxed">
+            Setelah klik kirim, silakan cek email <strong>pkayu9492@gmail.com</strong> untuk aktivasi pertama kali agar pesan bisa masuk.
+          </p>
         </div>
 
         <Button 
